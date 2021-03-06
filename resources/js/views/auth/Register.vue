@@ -1,6 +1,6 @@
 <template>
     <div
-        class="container mx-auto w-screen h-screen flex flex-col items-center justify-center"
+        class="container mx-auto w-screen custom-height flex flex-col items-center justify-center"
     >
         <h1 class="text-2xl mb-3">Register</h1>
         <form
@@ -88,4 +88,8 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style scoped>
+.custom-height {
+    height: calc(100vh - 80px);
+}
+</style>
