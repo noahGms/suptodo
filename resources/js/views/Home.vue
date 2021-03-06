@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-4">
+    <div class="container mx-auto">
         <h1>Home</h1>
         <button @click="$store.dispatch('whoami')">whoami</button>
         <p>{{ $store.getters.user }}</p>
