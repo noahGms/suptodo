@@ -3,7 +3,10 @@
         class="container mx-auto w-screen h-screen flex flex-col items-center justify-center"
     >
         <h1 class="text-2xl mb-3">Login</h1>
-        <form class="flex flex-col justify-center" @submit.prevent="login">
+        <form
+            class="flex flex-col justify-center w-5/12"
+            @submit.prevent="login"
+        >
             <div class="relative mb-4">
                 <label for="email" class="leading-7 text-sm text-gray-600"
                     >Email</label
@@ -31,7 +34,7 @@
             <button
                 class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             >
-                Button
+                Login
             </button>
         </form>
     </div>

@@ -1,9 +1,7 @@
 <template>
     <div>
         <HeaderComponent />
-        <div class="container mx-auto">
-            <router-view />
-        </div>
+        <router-view />
     </div>
 </template>
 
@@ -13,7 +11,6 @@ import HeaderComponent from "./components/layouts/HeaderComponent";
 
 export default defineComponent({
     name: "App",
-    methods: {},
     components: {
         HeaderComponent,
     },
