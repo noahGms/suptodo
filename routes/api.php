@@ -19,3 +19,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('whoami', [\App\Http\Controllers\AuthController::class, 'whoami'])->middleware(['auth:sanctum'])->name('whoami');
     Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware(['auth:sanctum'])->name('logout');
 });
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+   Route::apiResource('todolists', \App\Http\Controllers\TodolistController::class);
+});
