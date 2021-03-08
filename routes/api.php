@@ -21,5 +21,6 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('todolists/{todolist}/items', \App\Http\Controllers\TodoitemController::class);
    Route::apiResource('todolists', \App\Http\Controllers\TodolistController::class);
 });
