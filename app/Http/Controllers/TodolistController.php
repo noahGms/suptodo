@@ -80,4 +80,26 @@ class TodolistController extends Controller
         $todolist->delete();
         return response()->json(['message' => 'todolist deleted']);
     }
+
+    public function acceptParticipant(Todolist $todolist, User $user)
+    {
+        $participant = $todolist->Participants()->where('user_id', $user->id)->first();
+        if ($participant->pivot->accepted !== null) {
+            return response()->json(['messsage' => 'an error are occured']);
+        }
+        $participant->pivot->accepted = true;
+        $participant->pivot->update();
+        return response()->json(['messsage' => 'invitation accepted']);
+    }
+
+    public function denyParticipant(Todolist $todolist, User $user)
+    {
+        $participant = $todolist->Participants()->where('user_id', $user->id)->first();
+        if ($participant->pivot->accepted !== null) {
+            return response()->json(['messsage' => 'an error are occured']);
+        }
+        $participant->pivot->accepted = false;
+        $participant->pivot->update();
+        return response()->json(['messsage' => 'invitation denied']);
+    }
 }
