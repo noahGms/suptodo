@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -28,8 +29,13 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($password);
     }
 
-    public function Todolists(): HasMany
+    public function TodolistsCreate(): HasMany
     {
         return $this->hasMany(Todolist::class, 'created_by');
+    }
+
+    public function Todolists(): BelongsToMany
+    {
+        return $this->belongsToMany(Todolist::class, 'todolists_has_participants', 'user_id', 'todolist_id')->withPivot('accepted');
     }
 }

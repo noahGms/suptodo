@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TodolistRequest;
 use App\Http\Resources\TodolistResource;
 use App\Models\Todolist;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -35,6 +36,8 @@ class TodolistController extends Controller
         $todolist->created_by = Auth::id();
         $todolist->save();
 
+        $todolist->Participants()->attach($request->participants);
+
         return response()->json(['message' => 'todolist created']);
     }
 
@@ -59,6 +62,9 @@ class TodolistController extends Controller
     public function update(TodolistRequest $request, Todolist $todolist): JsonResponse
     {
         $todolist->update($request->validated());
+
+        $todolist->Participants()->sync($request->participants);
+
         return response()->json(['message' => 'todolist updated']);
     }
 
