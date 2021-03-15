@@ -23,6 +23,17 @@ export default {
                     })
             });
         },
+        getOneTodolist({commit}, id) {
+            return new Promise((resolve, reject) => {
+                axios.get('/api/todolists/' + id)
+                    .then(response => {
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    })
+            })
+        },
         newTodolist({ commit }, inputs) {
             return new Promise((resolve, reject) => {
                 axios.post('/api/todolists', inputs)

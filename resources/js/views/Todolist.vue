@@ -52,7 +52,7 @@
         <ul
             class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4"
         >
-            <li v-for="(item, idx) in todolists" :key="idx">
+            <li v-for="(item, idx) in todolists" :key="idx" @click="$router.push({name: 'todo', params: {id: item.id}})">
                 <a
                     class="hover:bg-indigo-500 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200"
                 >
