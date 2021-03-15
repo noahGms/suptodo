@@ -1,5 +1,5 @@
 <template>
-    <header class="text-gray-600 body-font">
+    <header class="text-gray-600 body-fontborder-b-2">
         <div
             class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
         >
@@ -27,7 +27,11 @@
                 <nav
                     class="md:ml-auto flex flex-wrap items-center text-base justify-center"
                 >
-                    <a class="mr-5 hover:text-gray-900">Todo</a>
+                    <router-link
+                        :to="{ name: 'todos' }"
+                        class="mr-5 hover:text-gray-900"
+                        >Todo</router-link
+                    >
                     <a class="mr-5 hover:text-gray-900">Friends</a>
                 </nav>
                 <button

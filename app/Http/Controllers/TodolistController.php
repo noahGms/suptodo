@@ -81,7 +81,7 @@ class TodolistController extends Controller
         return response()->json(['message' => 'todolist deleted']);
     }
 
-    public function acceptParticipant(Todolist $todolist, User $user)
+    public function acceptParticipant(Todolist $todolist, User $user): JsonResponse
     {
         $participant = $todolist->Participants()->where('user_id', $user->id)->first();
         if ($participant->pivot->accepted !== null) {
@@ -92,7 +92,7 @@ class TodolistController extends Controller
         return response()->json(['messsage' => 'invitation accepted']);
     }
 
-    public function denyParticipant(Todolist $todolist, User $user)
+    public function denyParticipant(Todolist $todolist, User $user): JsonResponse
     {
         $participant = $todolist->Participants()->where('user_id', $user->id)->first();
         if ($participant->pivot->accepted !== null) {
