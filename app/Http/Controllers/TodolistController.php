@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use App\Models\User;
+use App\Models\Todolist;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TodolistRequest;
 use App\Http\Resources\TodolistResource;
-use App\Models\Todolist;
-use App\Models\User;
-use Exception;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Facades\Auth;
 
 class TodolistController extends Controller
 {
@@ -18,9 +19,15 @@ class TodolistController extends Controller
      *
      * @return AnonymousResourceCollection
      */
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
-        return TodolistResource::collection(Todolist::all());
+        if ($searchQuery = $request->query('search')) {
+            $todolists = Todolist::query()->where('name', 'LIKE', '%'.$searchQuery.'%')->get();
+        } else {
+            $todolists = Todolist::all();
+        }
+
+        return TodolistResource::collection($todolists);
     }
 
     /**

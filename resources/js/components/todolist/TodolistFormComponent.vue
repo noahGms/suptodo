@@ -3,6 +3,11 @@
         class="container mx-auto flex flex-col justify-center mb-12"
         @submit.prevent="handleSubmit"
     >
+        <div class="flex justify-end">
+            <button @click="$emit('closeForm')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
         <div class="relative mb-4">
             <label for="name" class="leading-7 text-sm text-gray-600"
                 >Name</label

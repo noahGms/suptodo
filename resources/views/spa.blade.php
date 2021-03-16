@@ -20,6 +20,7 @@
 
 <body>
     <div id="app"></div>
+    <script src="https://kit.fontawesome.com/4f3834f0ec.js" crossorigin="anonymous"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 
