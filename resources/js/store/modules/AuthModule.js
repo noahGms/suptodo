@@ -10,9 +10,7 @@ export default {
         isLoggedIn(state) {
             return !!state.token
         },
-        user(state) {
-            return state.user;
-        }
+        user: (state) => state.user
     },
     mutations: {
         setToken(state, token) {
@@ -65,11 +63,11 @@ export default {
                     })
             })
         },
-        whoami({ commit }) {
+        whoami({ commit, getters }) {
             return new Promise((resolve, reject) => {
                 axios.get('/api/auth/whoami')
                     .then(response => {
-                        commit('setUser', response.data);
+                        commit('setUser', response.data.data);
                         resolve(response);
                     })
                     .catch(error => {
