@@ -25,4 +25,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('todolists/{todolist}/users/{user}/accept', [\App\Http\Controllers\TodolistController::class, 'acceptParticipant']);
     Route::get('todolists/{todolist}/users/{user}/deny', [\App\Http\Controllers\TodolistController::class, 'denyParticipant']);
    Route::apiResource('todolists', \App\Http\Controllers\TodolistController::class);
+
+    Route::get('friends/', [\App\Http\Controllers\FriendController::class, 'index']);
+    Route::get('friends/invitations', [\App\Http\Controllers\FriendController::class, 'invitations']);
+    Route::post('friends/', [\App\Http\Controllers\FriendController::class, 'add']);
+    Route::delete('friends/{friend}', [\App\Http\Controllers\FriendController::class, 'remove']);
+    Route::post('friends/{user}/accept', [\App\Http\Controllers\FriendController::class, 'accept']);
+    Route::post('friends/{user}/deny', [\App\Http\Controllers\FriendController::class, 'deny']);
 });
