@@ -1,5 +1,5 @@
 <template>
-    <nav class="flex items-center justify-between flex-wrap bg-indigo-500 p-4 fixed w-full z-10 top-0">
+    <nav class="flex items-center justify-between flex-wrap bg-indigo-500 p-2 fixed w-full z-10 top-0">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
             <a class="text-white no-underline hover:text-white hover:no-underline" href="#">
                 <span class="text-2xl pl-2"><i class="em em-grinning"></i>Suptodo</span>
@@ -28,12 +28,13 @@
                         >Profile</router-link>
                     </li>
                 </ul>
-                <button 
+                <button
                     class="inline-flex items-center border-gray-100 border-2 text-white hover:text-black py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
                     @click="logout"
                 >
                     Logout
-                    <svg
+                    <i class="fas fa-sign-out-alt w-4 h-4 ml-2"></i>
+                    <!--<svg
                         fill="none"
                         stroke="currentColor"
                         stroke-linecap="round"
@@ -43,7 +44,7 @@
                         viewBox="0 0 24 24"
                     >
                         <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
+                    </svg>-->
                 </button>
             </template>
             <template v-else>
