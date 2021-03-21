@@ -8,6 +8,7 @@
             :todolist="todolist"
             @getAllTodolist="getAllTodolist"
             @closeForm="closeForm"
+            :user="user"
         ></TodolistFormComponent>
         <div class="flex items-center justify-between">
             <h2 class="text-lg leading-6 font-medium text-black">Todolists</h2>
@@ -53,6 +54,9 @@
                                 </dd>
                             </div>
                         </dl>
+                        <div v-if="item.participants">
+                            <img v-for="(participant, idx) in item.participants" class="inline object-cover w-8 h-8 rounded-full m-1" src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Profile image"/>
+                        </div>
                     </a>
                 </li>
                 <!--<li class="hover:shadow-lg flex rounded-lg">
@@ -89,10 +93,14 @@ export default defineComponent({
         todolists() {
             return this.$store.getters.getTodolists;
         },
+        user() {
+            return this.$store.getters.user;
+        }
     },
     methods: {
         getAllTodolist(query = {}) {
             this.loaded = false;
+            this.$store.dispatch('whoami');
             this.$store.dispatch("getAllTodolists", query).then(response => {
                 this.loaded = true;
                 this.$router.replace(formatQuery(query)).catch(() => {});
@@ -100,7 +108,7 @@ export default defineComponent({
         },
         openForm() {
             this.showForm = true;
-            this.todolist = { name: "" };
+            this.todolist = { name: "", participants: [] };
         },
         closeForm() {
             this.showForm = false;
