@@ -109,7 +109,6 @@ export default defineComponent({
 
 <style scoped>
 .custom-height {
-    /*height: calc(100vh - 72px);*/
     height: 100vh;
 }
 </style>
