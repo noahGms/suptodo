@@ -16539,31 +16539,37 @@ var _hoisted_9 = {
   "class": "mr-3"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Profile");
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Friends");
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Logout ");
+var _hoisted_11 = {
+  "class": "mr-3"
+};
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Profile");
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Logout ");
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
   "class": "fas fa-sign-out-alt w-4 h-4 ml-2"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_13 = {
+var _hoisted_15 = {
   key: 1,
   "class": "list-reset lg:flex justify-end flex-1 items-center"
 };
-var _hoisted_14 = {
-  "class": "mr-3"
-};
-
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Login");
-
 var _hoisted_16 = {
   "class": "mr-3"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Register");
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Login");
+
+var _hoisted_18 = {
+  "class": "mr-3"
+};
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Register");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -16590,7 +16596,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
-      name: 'profile'
+      name: 'friends'
     },
     "class": "inline-block py-2 px-4 text-white no-underline"
   }, {
@@ -16600,33 +16606,45 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'profile'
+    },
+    "class": "inline-block py-2 px-4 text-white no-underline"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_12];
+    }),
+    _: 1
+    /* STABLE */
+
   })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     "class": "inline-flex items-center border-gray-100 border-2 text-white hover:text-black py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0",
     onClick: _cache[2] || (_cache[2] = function () {
       return _ctx.logout && _ctx.logout.apply(_ctx, arguments);
     })
-  }, [_hoisted_11, _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<svg\n                        fill=\"none\"\n                        stroke=\"currentColor\"\n                        stroke-linecap=\"round\"\n                        stroke-linejoin=\"round\"\n                        stroke-width=\"2\"\n                        class=\"w-4 h-4 ml-1\"\n                        viewBox=\"0 0 24 24\"\n                    >\n                        <path d=\"M5 12h14M12 5l7 7-7 7\"></path>\n                    </svg>")])], 64
+  }, [_hoisted_13, _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<svg\n                        fill=\"none\"\n                        stroke=\"currentColor\"\n                        stroke-linecap=\"round\"\n                        stroke-linejoin=\"round\"\n                        stroke-width=\"2\"\n                        class=\"w-4 h-4 ml-1\"\n                        viewBox=\"0 0 24 24\"\n                    >\n                        <path d=\"M5 12h14M12 5l7 7-7 7\"></path>\n                    </svg>")])], 64
   /* STABLE_FRAGMENT */
-  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'login'
     },
     "class": "inline-block py-2 px-4 text-white no-underline"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_15];
+      return [_hoisted_17];
     }),
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'register'
     },
     "class": "inline-block py-2 px-4 text-white no-underline"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_17];
+      return [_hoisted_19];
     }),
     _: 1
     /* STABLE */
@@ -16786,6 +16804,15 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createRouter)({
     name: 'todo',
     component: function component() {
       return __webpack_require__.e(/*! import() | container */ "container").then(__webpack_require__.bind(__webpack_require__, /*! ../views/TodolistDetails.vue */ "./resources/js/views/TodolistDetails.vue"));
+    },
+    meta: {
+      requiresAuth: true
+    }
+  }, {
+    path: '/friends',
+    name: 'friends',
+    component: function component() {
+      return __webpack_require__.e(/*! import() | container */ "container").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Friends.vue */ "./resources/js/views/Friends.vue"));
     },
     meta: {
       requiresAuth: true

@@ -10,6 +10,7 @@ const router = createRouter({
         { path: '/profile', name: 'profile', component: () => import(/* webpackChunkName: "container" */ '../views/auth/Profile.vue'), meta: { requiresAuth: false } },
         { path: '/todos', name: 'todos', component: () => import(/* webpackChunkName: "container" */ '../views/Todolist.vue'), meta: { requiresAuth: true } },
         { path: '/todos/:id', name: 'todo', component: () => import(/* webpackChunkName: "container" */ '../views/TodolistDetails.vue'), meta: { requiresAuth: true } },
+        { path: '/friends', name: 'friends', component: () => import(/* webpackChunkName: "container" */ '../views/Friends.vue'), meta: { requiresAuth: true } },
     ]
 })
 
