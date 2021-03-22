@@ -55,7 +55,7 @@
                             </div>
                         </dl>
                         <div v-if="item.participants">
-                            <img v-for="(participant, idx) in item.participants" class="inline object-cover w-8 h-8 rounded-full m-1" src="https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Profile image"/>
+                            <img v-for="(participant, idx) in item.participants" class="inline object-cover w-8 h-8 rounded-full m-1" :src="'../storage/' + participant.profile_pic" alt="Profile image"/>
                         </div>
                     </a>
                 </li>

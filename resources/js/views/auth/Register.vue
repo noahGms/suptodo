@@ -55,6 +55,18 @@
                     class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
             </div>
+            <div class="relative mb-4">
+                <label for="profile_pic" class="leading-7 text-sm text-gray-600"
+                    >Profile picture</label
+                >
+                <input
+                    type="file"
+                    id="profile_pic"
+                    name="profile_pic"
+                    @change="handleFile"
+                    class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+            </div>
             <button
                 class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             >
@@ -66,6 +78,7 @@
 
 <script>
 import { defineComponent } from "vue";
+import {uploadFile} from "../../helpers/requests";
 export default defineComponent({
     name: "Register",
     data() {
@@ -75,10 +88,16 @@ export default defineComponent({
                 username: "",
                 password: "",
                 password_confirmation: "",
+                profile_pic: null
             },
         };
     },
     methods: {
+        handleFile(e) {
+            uploadFile(e.target.files[0]).then(response => {
+                this.user.profile_pic = response.data.path;
+            })
+        },
         register() {
             this.$store.dispatch("register", this.user).then((response) => {
                 this.$router.push({ name: "login" });

@@ -26,7 +26,8 @@ class RegisterRequest extends FormRequest
         return [
             'username' => 'nullable|unique:users,username',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed',
+            'profile_pic' => 'nullable|string'
         ];
     }
 }

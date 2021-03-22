@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function register(RegisterRequest $resquest)
+    public function register(RegisterRequest $request)
     {
-        User::create($resquest->validated());
+        $user = User::create($request->validated());
         return response()->json('user created');
     }
 

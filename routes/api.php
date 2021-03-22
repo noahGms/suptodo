@@ -33,3 +33,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('friends/{user}/accept', [\App\Http\Controllers\FriendController::class, 'accept']);
     Route::post('friends/{user}/deny', [\App\Http\Controllers\FriendController::class, 'deny']);
 });
+
+Route::post('/files/upload', [\App\Http\Controllers\FileController::class, 'upload']);
