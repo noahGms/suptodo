@@ -70,7 +70,7 @@
             </ul>
         </div>
         <div v-else class="bg-indigo-100 border border-indigo-500 text-indigo-700 px-4 py-3 rounded relative" role="alert">
-            <strong class="font-bold"><span class="block sm:inline">No todolists found.</span></strong>
+            <strong class="font-bold"><span class="block sm:inline">No todolists found 🙅‍.</span></strong>
         </div>
     </div>
 </template>
