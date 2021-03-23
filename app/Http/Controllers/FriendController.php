@@ -6,17 +6,24 @@ use App\Http\Requests\FriendRequest;
 use App\Http\Resources\FriendResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
 
 class FriendController extends Controller
 {
     /**
+     * @param Request $request
      * @return AnonymousResourceCollection
      */
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
-        return FriendResource::collection(Auth::user()->Friends);
+        if ($searchQuery = $request->query('search')) {
+            $friends = Auth::user()->Friends()->where('username', 'LIKE', '%'.$searchQuery.'%')->orWhere('email', 'LIKE', '%'.$searchQuery.'%')->get();
+        } else {
+            $friends = Auth::user()->Friends;
+        }
+        return FriendResource::collection($friends);
     }
 
     /**

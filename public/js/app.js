@@ -16844,16 +16844,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _modules_AuthModule__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/AuthModule */ "./resources/js/store/modules/AuthModule.js");
 /* harmony import */ var _modules_TodolistModule__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/TodolistModule */ "./resources/js/store/modules/TodolistModule.js");
+/* harmony import */ var _modules_FriendModule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/FriendModule */ "./resources/js/store/modules/FriendModule.js");
 
 
 
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
+
+var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
   modules: {
     AuthModule: _modules_AuthModule__WEBPACK_IMPORTED_MODULE_0__.default,
-    TodolistModule: _modules_TodolistModule__WEBPACK_IMPORTED_MODULE_1__.default
+    TodolistModule: _modules_TodolistModule__WEBPACK_IMPORTED_MODULE_1__.default,
+    FriendModule: _modules_FriendModule__WEBPACK_IMPORTED_MODULE_2__.default
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
@@ -16944,6 +16947,50 @@ __webpack_require__.r(__webpack_exports__);
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/auth/whoami').then(function (response) {
           commit('setUser', response.data.data);
+          resolve(response);
+        })["catch"](function (error) {
+          reject(error);
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/FriendModule.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/modules/FriendModule.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _helpers_routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/routes */ "./resources/js/helpers/routes.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: {
+    friends: []
+  },
+  getters: {
+    friends: function friends(state) {
+      return state.friends;
+    }
+  },
+  mutations: {
+    setFriends: function setFriends(state, data) {
+      state.friends = data;
+    }
+  },
+  actions: {
+    getAllFriends: function getAllFriends(_ref, query) {
+      var commit = _ref.commit;
+      return new Promise(function (resolve, reject) {
+        axios.get('/api/friends' + (0,_helpers_routes__WEBPACK_IMPORTED_MODULE_0__.formatQuery)(query)).then(function (response) {
+          commit('setFriends', response.data.data);
           resolve(response);
         })["catch"](function (error) {
           reject(error);
