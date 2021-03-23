@@ -20,7 +20,13 @@
                         <router-link
                             :to="{ name: 'todos' }"
                             class="inline-block py-2 px-4 text-white no-underline"
-                        >Todo</router-link>
+                        >Todolists</router-link>
+                    </li>
+                    <li class="mr-3">
+                        <router-link
+                            :to="{ name: 'users' }"
+                            class="inline-block py-2 px-4 text-white no-underline"
+                        >Users</router-link>
                     </li>
                     <li class="mr-3">
                         <router-link

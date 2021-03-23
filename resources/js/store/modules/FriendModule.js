@@ -35,6 +35,15 @@ export default {
                         reject(error);
                     })
             })
+        },
+        addOneFriend({commit}, user) {
+            return new Promise((resolve, reject) => {
+                axios.post('/api/friends', {user_id: user.id})
+                    .then(response => {
+                        resolve(response);
+                    })
+                    .catch(error => reject(error));
+            })
         }
     }
 

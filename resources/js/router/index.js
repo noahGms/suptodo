@@ -11,6 +11,7 @@ const router = createRouter({
         { path: '/todos', name: 'todos', component: () => import(/* webpackChunkName: "container" */ '../views/Todolist.vue'), meta: { requiresAuth: true } },
         { path: '/todos/:id', name: 'todo', component: () => import(/* webpackChunkName: "container" */ '../views/TodolistDetails.vue'), meta: { requiresAuth: true } },
         { path: '/friends', name: 'friends', component: () => import(/* webpackChunkName: "container" */ '../views/Friends.vue'), meta: { requiresAuth: true } },
+        { path: '/users', name: 'users', component: () => import(/* webpackChunkName: "container" */ '../views/Users.vue'), meta: { requiresAuth: true } },
     ]
 })
 

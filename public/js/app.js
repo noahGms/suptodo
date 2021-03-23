@@ -16537,37 +16537,43 @@ var _hoisted_10 = {
   "class": "mr-3"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Friends");
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Users");
 
 var _hoisted_12 = {
   "class": "mr-3"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Profile");
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Friends");
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Logout ");
+var _hoisted_14 = {
+  "class": "mr-3"
+};
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Profile");
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Logout ");
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
   "class": "fas fa-sign-out-alt w-4 h-4 ml-2"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_16 = {
+var _hoisted_18 = {
   key: 1,
   "class": "list-reset lg:flex justify-end flex-1 items-center"
 };
-var _hoisted_17 = {
-  "class": "mr-3"
-};
-
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Login");
-
 var _hoisted_19 = {
   "class": "mr-3"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Register");
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Login");
+
+var _hoisted_21 = {
+  "class": "mr-3"
+};
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Register");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -16606,7 +16612,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
-      name: 'friends'
+      name: 'users'
     },
     "class": "inline-block py-2 px-4 text-white no-underline"
   }, {
@@ -16618,7 +16624,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
-      name: 'profile'
+      name: 'friends'
     },
     "class": "inline-block py-2 px-4 text-white no-underline"
   }, {
@@ -16628,33 +16634,45 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'profile'
+    },
+    "class": "inline-block py-2 px-4 text-white no-underline"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_15];
+    }),
+    _: 1
+    /* STABLE */
+
   })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     "class": "inline-flex items-center border-gray-100 border-2 text-white hover:text-black py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0",
     onClick: _cache[2] || (_cache[2] = function () {
       return _ctx.logout && _ctx.logout.apply(_ctx, arguments);
     })
-  }, [_hoisted_14, _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<svg\n                        fill=\"none\"\n                        stroke=\"currentColor\"\n                        stroke-linecap=\"round\"\n                        stroke-linejoin=\"round\"\n                        stroke-width=\"2\"\n                        class=\"w-4 h-4 ml-1\"\n                        viewBox=\"0 0 24 24\"\n                    >\n                        <path d=\"M5 12h14M12 5l7 7-7 7\"></path>\n                    </svg>")])], 64
+  }, [_hoisted_16, _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<svg\n                        fill=\"none\"\n                        stroke=\"currentColor\"\n                        stroke-linecap=\"round\"\n                        stroke-linejoin=\"round\"\n                        stroke-width=\"2\"\n                        class=\"w-4 h-4 ml-1\"\n                        viewBox=\"0 0 24 24\"\n                    >\n                        <path d=\"M5 12h14M12 5l7 7-7 7\"></path>\n                    </svg>")])], 64
   /* STABLE_FRAGMENT */
-  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("ul", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'login'
     },
     "class": "inline-block py-2 px-4 text-white no-underline"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_18];
+      return [_hoisted_20];
     }),
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'register'
     },
     "class": "inline-block py-2 px-4 text-white no-underline"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_20];
+      return [_hoisted_22];
     }),
     _: 1
     /* STABLE */
@@ -16823,6 +16841,15 @@ var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createRouter)({
     name: 'friends',
     component: function component() {
       return __webpack_require__.e(/*! import() | container */ "container").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Friends.vue */ "./resources/js/views/Friends.vue"));
+    },
+    meta: {
+      requiresAuth: true
+    }
+  }, {
+    path: '/users',
+    name: 'users',
+    component: function component() {
+      return __webpack_require__.e(/*! import() | container */ "container").then(__webpack_require__.bind(__webpack_require__, /*! ../views/Users.vue */ "./resources/js/views/Users.vue"));
     },
     meta: {
       requiresAuth: true
@@ -17019,6 +17046,18 @@ __webpack_require__.r(__webpack_exports__);
           reject(error);
         });
       });
+    },
+    addOneFriend: function addOneFriend(_ref3, user) {
+      var commit = _ref3.commit;
+      return new Promise(function (resolve, reject) {
+        axios.post('/api/friends', {
+          user_id: user.id
+        }).then(function (response) {
+          resolve(response);
+        })["catch"](function (error) {
+          return reject(error);
+        });
+      });
     }
   }
 });
@@ -17100,6 +17139,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _helpers_routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/routes */ "./resources/js/helpers/routes.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   state: {
     users: []
@@ -17115,10 +17156,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   actions: {
-    getAllUsers: function getAllUsers(_ref) {
+    getAllUsers: function getAllUsers(_ref, query) {
       var commit = _ref.commit;
       return new Promise(function (resolve, reject) {
-        axios.get('/api/users').then(function (response) {
+        axios.get('/api/users' + (0,_helpers_routes__WEBPACK_IMPORTED_MODULE_0__.formatQuery)(query)).then(function (response) {
           commit('setUsers', response.data.data);
           resolve(response);
         })["catch"](function (error) {
