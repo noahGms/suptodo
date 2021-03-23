@@ -19,7 +19,10 @@ class FriendController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         if ($searchQuery = $request->query('search')) {
-            $friends = Auth::user()->Friends()->where('username', 'LIKE', '%'.$searchQuery.'%')->orWhere('email', 'LIKE', '%'.$searchQuery.'%')->get();
+            $friends = Auth::user()->Friends()->where(function ($query) use ($searchQuery) {
+                $query->where('username', 'LIKE', '%'.$searchQuery.'%')
+                    ->orWhere('email', 'LIKE', '%'.$searchQuery.'%');
+            })->get();
         } else {
             $friends = Auth::user()->Friends;
         }
