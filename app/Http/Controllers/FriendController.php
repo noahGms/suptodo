@@ -42,7 +42,7 @@ class FriendController extends Controller
      */
     public function remove(User $friend): JsonResponse
     {
-        Auth::user()->Friends()->detach($friend->id);
+        Auth::user()->Friends()->detach($friend);
         return response()->json(['message' => 'friend removed']);
     }
 

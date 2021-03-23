@@ -24,6 +24,17 @@ export default {
                         reject(error);
                     })
             })
+        },
+        deleteOneFriend({commit}, friend) {
+            return new Promise((resolve, reject) => {
+                axios.delete('/api/friends/' + friend.id)
+                    .then(response => {
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    })
+            })
         }
     }
 

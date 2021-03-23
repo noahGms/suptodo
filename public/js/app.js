@@ -16531,7 +16531,7 @@ var _hoisted_8 = {
   "class": "mr-3"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Todo");
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Todolists");
 
 var _hoisted_10 = {
   "class": "mr-3"
@@ -16854,19 +16854,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _modules_AuthModule__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/AuthModule */ "./resources/js/store/modules/AuthModule.js");
 /* harmony import */ var _modules_TodolistModule__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/TodolistModule */ "./resources/js/store/modules/TodolistModule.js");
 /* harmony import */ var _modules_FriendModule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/FriendModule */ "./resources/js/store/modules/FriendModule.js");
+/* harmony import */ var _modules_UserModule__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/UserModule */ "./resources/js/store/modules/UserModule.js");
 
 
 
 
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.createStore)({
+
+var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.createStore)({
   modules: {
     AuthModule: _modules_AuthModule__WEBPACK_IMPORTED_MODULE_0__.default,
     TodolistModule: _modules_TodolistModule__WEBPACK_IMPORTED_MODULE_1__.default,
-    FriendModule: _modules_FriendModule__WEBPACK_IMPORTED_MODULE_2__.default
+    FriendModule: _modules_FriendModule__WEBPACK_IMPORTED_MODULE_2__.default,
+    UserModule: _modules_UserModule__WEBPACK_IMPORTED_MODULE_3__.default
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
@@ -17006,6 +17009,16 @@ __webpack_require__.r(__webpack_exports__);
           reject(error);
         });
       });
+    },
+    deleteOneFriend: function deleteOneFriend(_ref2, friend) {
+      var commit = _ref2.commit;
+      return new Promise(function (resolve, reject) {
+        axios["delete"]('/api/friends/' + friend.id).then(function (response) {
+          resolve(response);
+        })["catch"](function (error) {
+          reject(error);
+        });
+      });
     }
   }
 });
@@ -17065,6 +17078,48 @@ __webpack_require__.r(__webpack_exports__);
       var commit = _ref3.commit;
       return new Promise(function (resolve, reject) {
         axios.post('/api/todolists', inputs).then(function (response) {
+          resolve(response);
+        })["catch"](function (error) {
+          reject(error);
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/store/modules/UserModule.js":
+/*!**************************************************!*\
+  !*** ./resources/js/store/modules/UserModule.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  state: {
+    users: []
+  },
+  getters: {
+    users: function users(state) {
+      return state.users;
+    }
+  },
+  mutations: {
+    setUsers: function setUsers(state, data) {
+      state.users = data;
+    }
+  },
+  actions: {
+    getAllUsers: function getAllUsers(_ref) {
+      var commit = _ref.commit;
+      return new Promise(function (resolve, reject) {
+        axios.get('/api/users').then(function (response) {
+          commit('setUsers', response.data.data);
           resolve(response);
         })["catch"](function (error) {
           reject(error);

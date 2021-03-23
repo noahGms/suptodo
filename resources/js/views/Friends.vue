@@ -26,7 +26,7 @@
         </form>
         <div v-if="friends.length">
             <div class="flex flex-wrap -m-4">
-                <div class="p-4 md:w-1/3 w-full" v-for="(friend, idx) in friends" :key="idx">
+                <div class="p-4 lg:w-1/3 w-full" v-for="(friend, idx) in friends" :key="idx">
                     <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                         <div class="flex items-center mb-3">
                             <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
@@ -39,11 +39,7 @@
                                 <span :class="friendStatus(friend).class">{{friendStatus(friend).name}}</span>
                             </div>
                             <div>
-                                <a class="text-indigo-500 inline-flex items-center">View profile
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
+                                <button class="hover:bg-red-200 hover:text-red-800 group flex items-center rounded-md bg-red-100 text-red-600 text-sm font-medium px-4 py-2" @click="deleteFriend(friend)">Remove <i class="ml-2 fas fa-trash"></i></button>
                             </div>
                         </div>
                     </div>
@@ -99,6 +95,13 @@ export default defineComponent({
                     class: 'inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-indigo-700 rounded',
                     name: 'Pending'
                 };
+            }
+        },
+        deleteFriend(friend) {
+            if (confirm('Are you sure ?')) {
+                this.$store.dispatch('deleteOneFriend', friend).then(_ => {
+                    this.getAllFriends();
+                });
             }
         }
     },
