@@ -80,19 +80,19 @@ export default defineComponent({
             this.getAllFriends();
         },
         friendStatus(friend) {
-            if (friend.accepted) {
+            if (friend.accepted === 1) {
                 return {
                     class: 'inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-green-700 rounded',
                     name: 'Accepted'
                 };
-            } else if(!friend.accepted) {
+            } else if (friend.accepted === 0) {
                 return {
-                    class: 'inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-red-700 rounded',
+                    class: 'inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-700 rounded',
                     name: 'No accepted'
                 };
             } else {
                 return {
-                    class: 'inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-indigo-100 bg-indigo-700 rounded',
+                    class: 'inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-gray-100 bg-gray-700 rounded',
                     name: 'Pending'
                 };
             }
