@@ -21,7 +21,8 @@
             </button>
         </div>
         <form class="relative" @submit.prevent="handleSearch">
-            <i style="height: 20px; width: 20px;" class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <i style="height: 20px; width: 20px;"
+               class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
             <input
                 class="focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-10"
                 type="text"
@@ -31,16 +32,18 @@
                 @change="handleSearch"
             />
             <button type="button" v-if="searchQuery" @click="clearSearch">
-                <i style="height: 20px; width: 20px;" class="fas fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <i style="height: 20px; width: 20px;"
+                   class="fas fa-times absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
             </button>
         </form>
         <div v-if="todolists.length">
             <ul
-                class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4"
+                class="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 cursor-pointer"
             >
-                <li v-for="(item, idx) in todolists" :key="idx" @click="$router.push({name: 'todo', params: {id: item.id}})">
+                <li v-for="(item, idx) in todolists" :key="idx"
+                    @click="$router.push({name: 'todo', params: {id: item.id}})">
                     <a
-                        class="hover:bg-indigo-500 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200"
+                        class="hover:bg-gray-100 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200"
                     >
                         <dl
                             class="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-2 items-center"
@@ -48,14 +51,16 @@
                             <div>
                                 <dt class="sr-only">Title</dt>
                                 <dd
-                                    class="group-hover:text-white leading-6 font-medium text-black"
+                                    class="leading-6 font-medium text-black"
                                 >
                                     {{ item.name }}
                                 </dd>
                             </div>
                         </dl>
-                        <div v-if="item.participants">
-                            <img v-for="(participant, idx) in item.participants" class="inline object-cover w-8 h-8 rounded-full m-1" :src="'../storage/' + participant.profile_pic" alt="Profile image"/>
+                        <div v-for="(user, idx) in item.participants" :key="idx"
+                             class="w-8 h-8 mt-3 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
+                            <img v-if="user.profile_pic" class="inline object-cover w-8 h-8 rounded-full m-1"
+                                 :src="'../storage/' + user.profile_pic" alt="Profile image"/>
                         </div>
                     </a>
                 </li>
@@ -69,16 +74,18 @@
                 </li>-->
             </ul>
         </div>
-        <div v-else class="bg-indigo-100 border border-indigo-500 text-indigo-700 px-4 py-3 rounded relative" role="alert">
+        <div v-else class="bg-indigo-100 border border-indigo-500 text-indigo-700 px-4 py-3 rounded relative"
+             role="alert">
             <strong class="font-bold"><span class="block sm:inline">No todolists found 🙅‍.</span></strong>
         </div>
     </div>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
 import TodolistFormComponent from "../components/todolist/TodolistFormComponent";
 import {formatQuery} from "../helpers/routes";
+
 export default defineComponent({
     name: "Todolist",
     data() {
@@ -103,12 +110,13 @@ export default defineComponent({
             this.$store.dispatch('whoami');
             this.$store.dispatch("getAllTodolists", query).then(response => {
                 this.loaded = true;
-                this.$router.replace(formatQuery(query)).catch(() => {});
+                this.$router.replace(formatQuery(query)).catch(() => {
+                });
             });
         },
         openForm() {
             this.showForm = true;
-            this.todolist = { name: "", participants: [] };
+            this.todolist = {name: "", participants: []};
         },
         closeForm() {
             this.showForm = false;
