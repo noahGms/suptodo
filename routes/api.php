@@ -21,6 +21,10 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('todolists/{todolist}/items/{item}/status', [\App\Http\Controllers\TodoitemController::class, 'changeStatus']);
+    Route::post('todolists/{todolist}/completeAll', [\App\Http\Controllers\TodoitemController::class, 'completeAll']);
+    Route::post('todolists/{todolist}/incompleteAll', [\App\Http\Controllers\TodoitemController::class, 'incompleteAll']);
+    Route::post('todolists/{todolist}/removeAllCompleted', [\App\Http\Controllers\TodoitemController::class, 'removeAllCompleted']);
     Route::apiResource('todolists/{todolist}/items', \App\Http\Controllers\TodoitemController::class);
     Route::get('todolists/{todolist}/users/{user}/accept', [\App\Http\Controllers\TodolistController::class, 'acceptParticipant']);
     Route::get('todolists/{todolist}/users/{user}/deny', [\App\Http\Controllers\TodolistController::class, 'denyParticipant']);

@@ -79,4 +79,70 @@ class TodoitemController extends Controller
         $item->delete();
         return response()->json(['message' => 'todoitem deleted']);
     }
+
+    /**
+     * @param Todolist $todolist
+     * @param Todoitem $item
+     * @return JsonResponse
+     */
+    public function changeStatus(Todolist $todolist, Todoitem $item): JsonResponse
+    {
+        $item->completed = !$item->completed;
+        $item->save();
+        return response()->json(['message' => 'todoitem status changed']);
+    }
+
+    /**
+     * @param Todolist $todolist
+     * @return JsonResponse
+     */
+    public function completeAll(Todolist $todolist): JsonResponse
+    {
+        // TODO: return error if todoitems if null
+        $todoitems = Todoitem::where(function ($query) use ($todolist) {
+            $query->where('todolist_id', $todolist->id)
+                ->where('completed', 0);
+        })->get();
+        foreach ($todoitems as $todoitem) {
+            $todoitem->completed = true;
+            $todoitem->save();
+        }
+        return response()->json(['message' => 'all todo items completed']);
+    }
+
+    /**
+     * @param Todolist $todolist
+     * @return JsonResponse
+     */
+    public function incompleteAll(Todolist $todolist): JsonResponse
+    {
+        // TODO: return error if todoitems if null
+        $todoitems = Todoitem::where(function ($query) use ($todolist) {
+            $query->where('todolist_id', $todolist->id)
+                ->where('completed', 1);
+        })->get();
+        foreach ($todoitems as $todoitem) {
+            $todoitem->completed = false;
+            $todoitem->save();
+        }
+        return response()->json(['message' => 'all todo items incomplete']);
+    }
+
+    /**
+     * @param Todolist $todolist
+     * @return JsonResponse
+     */
+    public function removeAllCompleted(Todolist $todolist): JsonResponse
+    {
+        // TODO: return error if todoitems if null
+        $todoitems = Todoitem::where(function ($query) use ($todolist) {
+            $query->where('todolist_id', $todolist->id)
+                ->where('completed', 1);
+        })->get();
+        foreach ($todoitems as $todoitem) {
+            $todoitem->delete();
+        }
+        return response()->json(['message' => 'removed all todo items completed']);
+    }
+
 }

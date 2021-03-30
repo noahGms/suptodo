@@ -16407,6 +16407,11 @@ __webpack_require__.r(__webpack_exports__);
         return 'custom-position';
       }
     }
+  },
+  mounted: function mounted() {
+    if (this.$store.getters.isLoggedIn) {
+      this.$store.dispatch('whoami');
+    }
   }
 }));
 

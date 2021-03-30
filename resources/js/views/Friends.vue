@@ -2,13 +2,6 @@
     <div v-if="loaded" class="container mx-auto px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4">
         <div class="flex items-center justify-between">
             <h2 class="text-lg leading-6 font-medium text-black">Friends</h2>
-            <button
-                @click="openForm"
-                class="hover:bg-indigo-200 hover:text-indigo-800 group flex items-center rounded-md bg-indigo-100 text-indigo-600 text-sm font-medium px-4 py-2"
-            >
-                <i class="fas fa-plus group-hover:text-indigo-600 text-indigo-500 mr-2"></i>
-                Add
-            </button>
         </div>
         <form class="relative" @submit.prevent="handleSearch">
             <i style="height: 20px; width: 20px;" class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>

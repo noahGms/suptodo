@@ -18,6 +18,7 @@ class TodoitemResource extends JsonResource
         return [
             'id' => $this->id,
             'description' => $this->description,
+            'completed' => $this->completed
         ];
     }
 }

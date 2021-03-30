@@ -26,6 +26,11 @@ export default defineComponent({
                 return 'custom-position';
             }
         }
+    },
+    mounted() {
+        if(this.$store.getters.isLoggedIn) {
+            this.$store.dispatch('whoami');
+        }
     }
 });
 </script>

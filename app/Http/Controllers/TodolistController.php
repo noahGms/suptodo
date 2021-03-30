@@ -44,6 +44,7 @@ class TodolistController extends Controller
         $todolist->created_by = Auth::id();
         $todolist->save();
 
+        $todolist->Participants()->attach(Auth::user());
         $todolist->Participants()->attach($request->participants);
 
         return response()->json(['message' => 'todolist created']);

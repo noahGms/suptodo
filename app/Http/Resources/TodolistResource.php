@@ -19,6 +19,7 @@ class TodolistResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'participants' => $this->Participants,
+            'items' => TodoitemResource::collection($this->Todoitems),
             'created_by' => $this->CreatedBy
         ];
     }
