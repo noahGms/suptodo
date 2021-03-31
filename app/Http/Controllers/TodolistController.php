@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Models\User;
 use App\Models\Todolist;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -44,7 +43,7 @@ class TodolistController extends Controller
         $todolist->created_by = Auth::id();
         $todolist->save();
 
-        $todolist->Participants()->attach(Auth::user());
+        //$todolist->Participants()->attach(Auth::user());
         $todolist->Participants()->attach($request->participants);
 
         return response()->json(['message' => 'todolist created']);
@@ -90,9 +89,21 @@ class TodolistController extends Controller
         return response()->json(['message' => 'todolist deleted']);
     }
 
-    public function acceptParticipant(Todolist $todolist, User $user): JsonResponse
+    /**
+     * @return AnonymousResourceCollection
+     */
+    public function invitations(): AnonymousResourceCollection
     {
-        $participant = $todolist->Participants()->where('user_id', $user->id)->first();
+        return TodolistResource::collection(Auth::user()->TodolistInvitations()->get());
+    }
+
+    /**
+     * @param Todolist $todolist
+     * @return JsonResponse
+     */
+    public function acceptParticipant(Todolist $todolist): JsonResponse
+    {
+        $participant = $todolist->Participants()->where('user_id', Auth::id())->first();
         if ($participant->pivot->accepted !== null) {
             return response()->json(['messsage' => 'an error are occured']);
         }
@@ -101,9 +112,13 @@ class TodolistController extends Controller
         return response()->json(['messsage' => 'invitation accepted']);
     }
 
-    public function denyParticipant(Todolist $todolist, User $user): JsonResponse
+    /**
+     * @param Todolist $todolist
+     * @return JsonResponse
+     */
+    public function denyParticipant(Todolist $todolist): JsonResponse
     {
-        $participant = $todolist->Participants()->where('user_id', $user->id)->first();
+        $participant = $todolist->Participants()->where('user_id', Auth::id())->first();
         if ($participant->pivot->accepted !== null) {
             return response()->json(['messsage' => 'an error are occured']);
         }

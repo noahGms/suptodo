@@ -25,6 +25,17 @@ export default {
                     })
             })
         },
+        getAllFriendsInvitations() {
+            return new Promise((resolve, reject) => {
+                axios.get('/api/friends/invitations')
+                    .then(response => {
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    })
+            })
+        },
         deleteOneFriend({commit}, friend) {
             return new Promise((resolve, reject) => {
                 axios.delete('/api/friends/' + friend.id)

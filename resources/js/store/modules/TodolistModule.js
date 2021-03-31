@@ -25,6 +25,17 @@ export default {
                     })
             });
         },
+        getAllTodolistsInvitations() {
+            return new Promise((resolve, reject) => {
+                axios.get('/api/todolists/invitations')
+                    .then(response => {
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    })
+            });
+        },
         getOneTodolist({commit}, id) {
             return new Promise((resolve, reject) => {
                 axios.get('/api/todolists/' + id)

@@ -17042,6 +17042,15 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
+    getAllFriendsInvitations: function getAllFriendsInvitations() {
+      return new Promise(function (resolve, reject) {
+        axios.get('/api/friends/invitations').then(function (response) {
+          resolve(response);
+        })["catch"](function (error) {
+          reject(error);
+        });
+      });
+    },
     deleteOneFriend: function deleteOneFriend(_ref2, friend) {
       var commit = _ref2.commit;
       return new Promise(function (resolve, reject) {
@@ -17102,6 +17111,15 @@ __webpack_require__.r(__webpack_exports__);
       return new Promise(function (resolve, reject) {
         axios.get('/api/todolists' + (0,_helpers_routes__WEBPACK_IMPORTED_MODULE_0__.formatQuery)(query)).then(function (response) {
           commit('setTodolists', response.data.data);
+          resolve(response);
+        })["catch"](function (error) {
+          reject(error);
+        });
+      });
+    },
+    getAllTodolistsInvitations: function getAllTodolistsInvitations() {
+      return new Promise(function (resolve, reject) {
+        axios.get('/api/todolists/invitations').then(function (response) {
           resolve(response);
         })["catch"](function (error) {
           reject(error);
