@@ -24,7 +24,7 @@ class FriendRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|int|exists:users,id|unique:friends,friend_id'
+            'user_id' => 'required|int|exists:users,id'
         ];
     }
 }

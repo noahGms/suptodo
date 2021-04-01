@@ -15,7 +15,7 @@ export default {
     actions: {
         getAllTodolists({ commit }, query) {
             return new Promise((resolve, reject) => {
-                axios.get('/api/todolists' + formatQuery(query))
+                axios.get('/api/todolists/all' + formatQuery(query))
                     .then(response => {
                         commit('setTodolists', response.data.data);
                         resolve(response);

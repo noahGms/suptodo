@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TodolistRequest;
 use App\Http\Resources\TodolistResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use phpDocumentor\Reflection\Types\Collection;
 
 class TodolistController extends Controller
 {
@@ -26,6 +27,29 @@ class TodolistController extends Controller
         } else {
             $todolists = Todolist::all();
         }
+
+        return TodolistResource::collection($todolists);
+    }
+
+    /**
+     * @param Request $request
+     * @return AnonymousResourceCollection
+     */
+    public function all(Request $request): AnonymousResourceCollection
+    {
+        if ($searchQuery = $request->query('search')) {
+            $userId = Auth::id();
+            $myTodolist = Todolist::where(function ($query) use ($userId, $searchQuery) {
+                $query->where('created_by', $userId)
+                    ->where('name', 'LIKE', '%'.$searchQuery.'%');
+            })->get();
+            $todolistsInvited = Auth::user()->TodolistsAccepted()->where('name', 'LIKE', '%'.$searchQuery.'%')->get();
+        } else {
+            $myTodolist = Todolist::where('created_by', Auth::id())->get();
+            $todolistsInvited = Auth::user()->TodolistsAccepted;
+        }
+
+        $todolists = $myTodolist->merge($todolistsInvited);
 
         return TodolistResource::collection($todolists);
     }

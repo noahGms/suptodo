@@ -17109,7 +17109,7 @@ __webpack_require__.r(__webpack_exports__);
     getAllTodolists: function getAllTodolists(_ref, query) {
       var commit = _ref.commit;
       return new Promise(function (resolve, reject) {
-        axios.get('/api/todolists' + (0,_helpers_routes__WEBPACK_IMPORTED_MODULE_0__.formatQuery)(query)).then(function (response) {
+        axios.get('/api/todolists/all' + (0,_helpers_routes__WEBPACK_IMPORTED_MODULE_0__.formatQuery)(query)).then(function (response) {
           commit('setTodolists', response.data.data);
           resolve(response);
         })["catch"](function (error) {

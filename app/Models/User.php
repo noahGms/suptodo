@@ -40,6 +40,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Todolist::class, 'todolists_has_participants', 'user_id', 'todolist_id')->withPivot('accepted');
     }
 
+    public function TodolistsAccepted(): BelongsToMany
+    {
+        return $this->belongsToMany(Todolist::class, 'todolists_has_participants', 'user_id', 'todolist_id')->withPivot('accepted')->where('accepted', 1);
+    }
+
     public function TodolistInvitations(): BelongsToMany
     {
         return $this->belongsToMany(Todolist::class, 'todolists_has_participants', 'user_id', 'todolist_id')->withPivot('accepted')->where('accepted', null);

@@ -57,6 +57,10 @@
                                 </dd>
                             </div>
                         </dl>
+                        <div class="w-8 h-8 mt-3 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
+                            <img v-if="item.created_by.profile_pic" class="inline object-cover w-8 h-8 rounded-full m-1"
+                                 :src="'../storage/' + item.created_by.profile_pic" alt="Profile image"/>
+                        </div>
                         <div v-for="(user, idx) in item.participants" :key="idx"
                              class="w-8 h-8 mt-3 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
                             <img v-if="user.profile_pic" class="inline object-cover w-8 h-8 rounded-full m-1"
