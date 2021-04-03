@@ -7,7 +7,8 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "maildev": "./node_modules/.bin/maildev"
     },
     "devDependencies": {
         "@vue/compiler-sfc": "^3.0.7",
@@ -15,6 +16,7 @@
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
+        "maildev": "^1.1.0",
         "postcss": "^8.2.6",
         "tailwindcss": "^2.0.3",
         "vue-loader": "^16.1.2"
