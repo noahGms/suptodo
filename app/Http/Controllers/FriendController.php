@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FriendRequest;
 use App\Http\Resources\FriendResource;
+use App\Mail\NotificationMail;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FriendController extends Controller
 {
@@ -36,6 +38,12 @@ class FriendController extends Controller
     public function add(FriendRequest $request): JsonResponse
     {
         Auth::user()->Friends()->attach($request->validated());
+        $user = User::where('id', $request->user_id)->first();
+        $details = [
+            'title' => 'Friend request',
+            'body' => $user->username . ' want to be your friend !'
+        ];
+        Mail::to(Auth::user()->email)->send(new NotificationMail($details));
         return response()->json(['message' => 'friend invited']);
     }
 

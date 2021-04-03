@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotificationMail;
+use App\Models\User;
 use Exception;
 use App\Models\Todolist;
 use Illuminate\Http\Request;
@@ -10,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TodolistRequest;
 use App\Http\Resources\TodolistResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Mail;
 use phpDocumentor\Reflection\Types\Collection;
 
 class TodolistController extends Controller
@@ -69,6 +72,8 @@ class TodolistController extends Controller
 
         //$todolist->Participants()->attach(Auth::user());
         $todolist->Participants()->attach($request->participants);
+
+        $this->sendMail($request->participants, $todolist);
 
         return response()->json(['message' => 'todolist created']);
     }
@@ -149,5 +154,23 @@ class TodolistController extends Controller
         $participant->pivot->accepted = false;
         $participant->pivot->update();
         return response()->json(['messsage' => 'invitation denied']);
+    }
+
+    /**
+     * @param $participants
+     * @param $todolist
+     */
+    private function sendMail($participants, $todolist)
+    {
+        if (!empty($participants)) {
+            foreach ($participants as $participant) {
+                $user = User::where('id', $participant)->first();
+                $details = [
+                    'title' => 'Todolist invitation request',
+                    'body' => $user->username . ' add you on todolist ' . $todolist->id . ' !'
+                ];
+                Mail::to(Auth::user()->email)->send(new NotificationMail($details));
+            }
+        }
     }
 }
