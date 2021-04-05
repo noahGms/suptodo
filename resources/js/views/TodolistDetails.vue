@@ -1,6 +1,6 @@
 <template>
     <div v-if="loaded" class="container mx-auto w-full mt-4 flex flex-col items-center">
-        <div class="text-2xl uppercase">
+        <div class="text-2xl uppercase text-center">
             {{ todolist.name }} <button @click="updateTodolist" class="p-2 text-indigo-500 text-base"><i class="fas fa-edit"></i></button>
         </div>
         <form class="flex mt-6 mb-6 w-full justify-center" @submit.prevent="addItem">
