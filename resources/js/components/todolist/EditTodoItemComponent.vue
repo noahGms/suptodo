@@ -64,7 +64,7 @@ export default defineComponent({
         },
         getTodolist: {
             type: Function,
-            required: true
+            required: false
         }
     },
     methods: {
