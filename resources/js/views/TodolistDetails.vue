@@ -76,11 +76,19 @@
              role="alert">
             <strong class="font-bold"><span class="block sm:inline">No item found 🤔.</span></strong>
         </div>
+        <EditTodoItemComponent
+            v-if="showEditTodoItemComponent"
+            @close="closeEditTodoItemComponent"
+            :item="item"
+            :todolist="todolist"
+            @getTodolist="getTodolist"
+        ></EditTodoItemComponent>
     </div>
 </template>
 
 <script>
 import {defineComponent} from "vue";
+import EditTodoItemComponent from "../components/todolist/EditTodoItemComponent";
 
 export default defineComponent({
     name: 'TodolistDetails',
@@ -90,7 +98,9 @@ export default defineComponent({
             loaded: false,
             nameInput: "",
             showCompleted: true,
-            showIncompleted: true
+            showIncompleted: true,
+            showEditTodoItemComponent: false,
+            item: {}
         }
     },
     computed: {
@@ -122,6 +132,12 @@ export default defineComponent({
         },
         updateItem(item) {
             console.log('updating...');
+            this.showEditTodoItemComponent = true;
+            this.item = item;
+        },
+        closeEditTodoItemComponent() {
+            this.showEditTodoItemComponent = false;
+            this.item = {};
         },
         changeStatus(item) {
             axios.post(`/api/todolists/${this.todolist.id}/items/${item.id}/status`)
@@ -150,6 +166,9 @@ export default defineComponent({
     },
     created() {
         this.getTodolist();
+    },
+    components: {
+        EditTodoItemComponent
     }
 })
 </script>
