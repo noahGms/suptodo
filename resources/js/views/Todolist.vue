@@ -42,21 +42,14 @@
             >
                 <li v-for="(item, idx) in todolists" :key="idx"
                     @click="$router.push({name: 'todo', params: {id: item.id}})">
-                    <a
-                        class="hover:bg-gray-100 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200"
-                    >
-                        <dl
-                            class="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-2 items-center"
-                        >
+                    <a class="hover:bg-gray-100 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200">
+                        <div class="leading-6 font-medium text-black flex justify-between items-center">
+                            <div>{{ item.name }}</div>
                             <div>
-                                <dt class="sr-only">Title</dt>
-                                <dd
-                                    class="leading-6 font-medium text-black"
-                                >
-                                    {{ item.name }}
-                                </dd>
+                                <button @click.prevent.stop="updateTodolist(item)" class="p-2 text-indigo-500 text-base"><i class="fas fa-edit"></i></button>
+                                <button @click.prevent.stop="deleteItem(item)" class="p-2 text-red-500 text-base"><i class="fas fa-trash"></i></button>
                             </div>
-                        </dl>
+                        </div>
                         <div class="w-8 h-8 mt-3 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
                             <img v-if="item.created_by.profile_pic" class="inline object-cover w-8 h-8 rounded-full m-1"
                                  :src="'../storage/' + item.created_by.profile_pic" alt="Profile image"/>
@@ -68,26 +61,26 @@
                         </div>
                     </a>
                 </li>
-                <!--<li class="hover:shadow-lg flex rounded-lg">
-                    <button
-                        @click="openForm"
-                        class="hover:border-transparent hover:shadow-xs w-full flex items-center justify-center rounded-lg border-2 border-dashed border-gray-200 text-sm font-medium py-4"
-                    >
-                        New todolist
-                    </button>
-                </li>-->
             </ul>
         </div>
         <div v-else class="bg-indigo-100 border border-indigo-500 text-indigo-700 px-4 py-3 rounded relative"
              role="alert">
             <strong class="font-bold"><span class="block sm:inline">No todolists found 🙅‍.</span></strong>
         </div>
+        <EditTodolistComponent
+            v-if="showEditTodolistComponent"
+            @close="closeEditTodolistComponent"
+            :todolist="todolist"
+            @getTodolist="getAllTodolist"
+            :user="user"
+        ></EditTodolistComponent>
     </div>
 </template>
 
 <script>
 import {defineComponent} from "vue";
 import TodolistFormComponent from "../components/todolist/TodolistFormComponent";
+import EditTodolistComponent from "../components/todolist/EditTodolistComponent";
 import {formatQuery} from "../helpers/routes";
 
 export default defineComponent({
@@ -98,6 +91,7 @@ export default defineComponent({
             todolist: null,
             searchQuery: '',
             loaded: false,
+            showEditTodolistComponent: false,
         };
     },
     computed: {
@@ -132,13 +126,29 @@ export default defineComponent({
         clearSearch() {
             this.searchQuery = '';
             this.getAllTodolist();
-        }
+        },
+        updateTodolist(item) {
+            this.todolist = item;
+            this.showEditTodolistComponent = true;
+        },
+        closeEditTodolistComponent() {
+            this.todolist = null;
+            this.showEditTodolistComponent = false;
+        },
+        deleteItem(item) {
+            if (!confirm('Are you sure?')) return;
+            axios.delete(`/api/todolists/${item.id}`)
+                .then(response => {
+                    this.getAllTodolist();
+                })
+        },
     },
     created() {
         this.getAllTodolist();
     },
     components: {
         TodolistFormComponent,
+        EditTodolistComponent
     },
 });
 </script>
