@@ -1,6 +1,8 @@
 <template>
     <div v-if="loaded" class="container mx-auto w-full mt-4 flex flex-col items-center">
-        <div class="text-2xl uppercase">{{ todolist.name }}</div>
+        <div class="text-2xl uppercase">
+            {{ todolist.name }} <button @click="updateTodolist" class="p-2 text-indigo-500 text-base"><i class="fas fa-pencil-alt"></i></button>
+        </div>
         <form class="flex mt-6 mb-6 w-full justify-center" @submit.prevent="addItem">
             <div class="relative w-2/3 text-gray-700">
                 <input v-model="nameInput"
@@ -83,12 +85,20 @@
             :todolist="todolist"
             @getTodolist="getTodolist"
         ></EditTodoItemComponent>
+        <EditTodolistComponent
+            v-if="showEditTodolistComponent"
+            @close="closeEditTodolistComponent"
+            :todolist="todolist"
+            @getTodolist="getTodolist"
+            :user="user"
+        ></EditTodolistComponent>
     </div>
 </template>
 
 <script>
 import {defineComponent} from "vue";
 import EditTodoItemComponent from "../components/todolist/EditTodoItemComponent";
+import EditTodolistComponent from "../components/todolist/EditTodolistComponent";
 
 export default defineComponent({
     name: 'TodolistDetails',
@@ -100,6 +110,7 @@ export default defineComponent({
             showCompleted: true,
             showIncompleted: true,
             showEditTodoItemComponent: false,
+            showEditTodolistComponent: false,
             item: {}
         }
     },
@@ -131,13 +142,15 @@ export default defineComponent({
                 })
         },
         updateItem(item) {
-            console.log('updating...');
             this.showEditTodoItemComponent = true;
             this.item = item;
         },
         closeEditTodoItemComponent() {
             this.showEditTodoItemComponent = false;
             this.item = {};
+        },
+        closeEditTodolistComponent() {
+            this.showEditTodolistComponent = false;
         },
         changeStatus(item) {
             axios.post(`/api/todolists/${this.todolist.id}/items/${item.id}/status`)
@@ -162,13 +175,17 @@ export default defineComponent({
             .then(response => {
                 this.getTodolist();
             })
+        },
+        updateTodolist() {
+            this.showEditTodolistComponent = true;
         }
     },
     created() {
         this.getTodolist();
     },
     components: {
-        EditTodoItemComponent
+        EditTodoItemComponent,
+        EditTodolistComponent
     }
 })
 </script>
