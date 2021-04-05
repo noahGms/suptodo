@@ -14,9 +14,7 @@
                             @submit.prevent="false"
                         >
                             <div class="relative mb-4">
-                                <label for="name" class="leading-7 text-sm text-gray-600"
-                                >Name</label
-                                >
+                                <label for="name" class="leading-7 text-sm text-gray-600">Description</label>
                                 <input
                                     type="text"
                                     id="name"
@@ -75,9 +73,6 @@ export default defineComponent({
                     this.$emit('getTodolist');
                 })
         }
-    },
-    mounted() {
-        console.log(this.item);
     }
 })
 </script>
