@@ -30,6 +30,6 @@ class Todolist extends Model
 
     public function Participants(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'todolists_has_participants', 'todolist_id', 'user_id')->withPivot('accepted');
+        return $this->belongsToMany(User::class, 'todolists_has_participants', 'todolist_id', 'user_id')->withPivot('accepted', 'permissions');
     }
 }

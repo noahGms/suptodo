@@ -23,11 +23,27 @@
                                     class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                                 />
                             </div>
-                            <div class="relative  mb-4">
+                            <div class="relative mb-4">
                                 <label for="participants" class="leading-7 text-sm text-gray-600">Friends</label>
                                 <select v-model="todolist.participants" id="participants" multiple class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Regular input">
                                     <option v-for="(friend, idx) in user.friends" :value="friend.id" :key="idx">{{friend.username}}</option>
                                 </select>
+                            </div>
+                            <div class="relative mb-4">
+                                <label for="participants" class="leading-7 text-sm text-gray-600">Permissions</label>
+                                <ul>
+                                    <li v-for="(friend, idx) in participants" :key="idx">
+                                        <span>{{friend.username}}</span>
+                                        <label class="text-gray-700 ml-4">
+                                            <input type="checkbox" @change="(e) => handlePermission(e, 'read', friend)" :checked="getPermission(friend.pivot.permissions[0])" />
+                                            <span class="ml-1">Read</span>
+                                        </label>
+                                        <label class="text-gray-700 ml-4">
+                                            <input type="checkbox" @change="(e) => handlePermission(e, 'write', friend)" :checked="getPermission(friend.pivot.permissions[1])"/>
+                                            <span class="ml-1">Write</span>
+                                        </label>
+                                    </li>
+                                </ul>
                             </div>
                         </form>
                     </div>
@@ -52,7 +68,9 @@ export default defineComponent({
     name: 'EditTodolistComponent',
     data() {
         return {
-            selectedParticipants: []
+            participants: [],
+            test: null,
+            test1: null,
         }
     },
     props: {
@@ -81,12 +99,33 @@ export default defineComponent({
                     this.$emit('close');
                     this.$emit('getTodolist');
                 })
+        },
+        getPermission(permission) {
+            return permission !== "-";
+        },
+        handlePermission(event, mode, friend) {
+            const permission = {id: friend.id, mode: mode, value: event.target.checked};
+            const permissionExist = this.todolist.permissions.filter(permission => permission.id === friend.id && permission.mode === mode);
+            if (!permissionExist.length) {
+                this.todolist.permissions.push(permission);
+            } else {
+                let index;
+                this.todolist.permissions.forEach((permission, idx) => {
+                    if (permission.mode === mode && permission.id === friend.id) {
+                        index = idx;
+                    }
+                })
+                this.todolist.permissions.splice(index, 1);
+                this.todolist.permissions.push(permission);
+            }
         }
     },
     mounted() {
         const selected = [];
+        this.participants = this.todolist.participants;
         this.todolist.participants.forEach(participant => selected.push(participant.id));
         this.todolist.participants = selected;
+        this.todolist.permissions = [];
     }
 })
 </script>

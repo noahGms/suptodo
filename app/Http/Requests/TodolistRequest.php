@@ -26,7 +26,11 @@ class TodolistRequest extends FormRequest
         return [
             'name' => 'required|max:45',
             'participants' => 'sometimes|array',
-            'participants.*' => 'sometimes|required|exists:users,id'
+            'participants.*' => 'sometimes|required|exists:users,id',
+            'permissions' => 'sometimes|array',
+            'permissions.*.id' => 'sometimes|required|exists:users,id',
+            'permissions.*.mode' => 'sometimes|required|string',
+            'permissions.*.value' => 'sometimes|required|boolean',
         ];
     }
 }

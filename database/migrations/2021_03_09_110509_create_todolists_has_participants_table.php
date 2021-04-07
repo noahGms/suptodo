@@ -21,6 +21,7 @@ class CreateTodolistsHasParticipantsTable extends Migration
             $table->foreign('user_id', 'fk_todolist_has_participants_user')->references('id')->on('users')->onUpdate('no action')->onDelete('cascade');
 
             $table->boolean('accepted')->nullable();
+            $table->string('permissions', 2)->default('rw');
         });
     }
 
