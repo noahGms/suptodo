@@ -130,6 +130,7 @@ export default defineComponent({
         addItem() {
             axios.post(`/api/todolists/${this.todolist.id}/items`, {description: this.nameInput})
                 .then(response => {
+                    window.notification(response.data.message, 'success');
                     this.nameInput = "";
                     this.getTodolist();
                 })
@@ -138,6 +139,7 @@ export default defineComponent({
             if (!confirm('Are you sure?')) return;
             axios.delete(`/api/todolists/${this.todolist.id}/items/${item.id}`)
                 .then(response => {
+                    window.notification(response.data.message, 'success');
                     this.getTodolist();
                 })
         },
@@ -155,24 +157,28 @@ export default defineComponent({
         changeStatus(item) {
             axios.post(`/api/todolists/${this.todolist.id}/items/${item.id}/status`)
             .then(response => {
+                window.notification(response.data.message, 'success');
                 this.getTodolist();
             })
         },
         completeAll() {
             axios.post(`/api/todolists/${this.todolist.id}/completeAll`)
             .then(response => {
+                window.notification(response.data.message, 'success');
                 this.getTodolist();
             })
         },
         incompleteAll() {
             axios.post(`/api/todolists/${this.todolist.id}/incompleteAll`)
                 .then(response => {
+                    window.notification(response.data.message, 'success');
                     this.getTodolist();
                 })
         },
         removeAllCompleted() {
             axios.post(`/api/todolists/${this.todolist.id}/removeAllCompleted`)
             .then(response => {
+                window.notification(response.data.message, 'success');
                 this.getTodolist();
             })
         },

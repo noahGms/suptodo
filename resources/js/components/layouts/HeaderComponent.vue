@@ -34,12 +34,12 @@
                             class="inline-block py-2 px-4 text-white no-underline"
                         >Friends</router-link>
                     </li>
-                    <li class="mr-3">
+                    <!--<li class="mr-3">
                         <router-link
                             :to="{ name: 'profile' }"
                             class="inline-block py-2 px-4 text-white no-underline"
                         >Profile</router-link>
-                    </li>
+                    </li>-->
                 </ul>
                 <button
                     class="inline-flex items-center border-gray-100 border-2 text-white hover:text-black py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
@@ -90,7 +90,11 @@ export default defineComponent({
     },
     methods: {
         logout() {
-            this.$store.dispatch("logout").finally(() => {
+            this.$store.dispatch("logout")
+                .then(response => {
+                    window.notification(response.data.message, 'success');
+                })
+                .finally(() => {
                 this.$router.push({ name: "login" });
             });
         },

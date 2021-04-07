@@ -77,6 +77,7 @@ export default defineComponent({
         update() {
             axios.put(`/api/todolists/${this.todolist.id}`, this.todolist)
                 .then(response => {
+                    window.notification(response.data.message, 'success');
                     this.$emit('close');
                     this.$emit('getTodolist');
                 })

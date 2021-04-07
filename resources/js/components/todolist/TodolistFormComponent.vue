@@ -66,6 +66,7 @@ export default defineComponent({
             this.$store
                 .dispatch("newTodolist", this.todolist)
                 .then((response) => {
+                    window.notification(response.data.message, 'success');
                     this.$emit("closeForm");
                     this.$emit("getAllTodolist");
                 });

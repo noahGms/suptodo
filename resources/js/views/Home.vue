@@ -88,21 +88,25 @@ export default defineComponent({
         },
         acceptFriend(id) {
             axios.post(`/api/friends/${id}/accept`).then(response => {
+                window.notification(response.data.message, 'success');
                 this.getAllFriendsInvitations();
             })
         },
         denyFriend(id) {
             axios.post(`/api/friends/${id}/deny`).then(response => {
+                window.notification(response.data.message, 'success');
                 this.getAllFriendsInvitations();
             })
         },
         acceptTodolist(id) {
             axios.post(`/api/todolists/${id}/accept`).then(response => {
+                window.notification(response.data.message, 'success');
                 this.getAllTodolistsInvitations();
             })
         },
         denyTodolist(id) {
             axios.post(`/api/todolists/${id}/deny`).then(response => {
+                window.notification(response.data.message, 'success');
                 this.getAllTodolistsInvitations();
             })
         }

@@ -100,6 +100,7 @@ export default defineComponent({
         },
         register() {
             this.$store.dispatch("register", this.user).then((response) => {
+                window.notification(response.data.message, 'success');
                 this.$router.push({ name: "login" });
             });
         },

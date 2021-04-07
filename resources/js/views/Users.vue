@@ -85,6 +85,7 @@ export default defineComponent({
         },
         addFriend(user) {
             this.$store.dispatch('addOneFriend', user).then(response => {
+                window.notification(response.data.message, 'success');
                 this.getAllUsers();
             })
         },

@@ -139,6 +139,7 @@ export default defineComponent({
             if (!confirm('Are you sure?')) return;
             axios.delete(`/api/todolists/${item.id}`)
                 .then(response => {
+                    window.notification(response.data.message, 'success');
                     this.getAllTodolist();
                 })
         },

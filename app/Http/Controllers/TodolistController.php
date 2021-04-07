@@ -134,11 +134,11 @@ class TodolistController extends Controller
     {
         $participant = $todolist->Participants()->where('user_id', Auth::id())->first();
         if ($participant->pivot->accepted !== null) {
-            return response()->json(['messsage' => 'an error are occured']);
+            return response()->json(['message' => 'an error are occured']);
         }
         $participant->pivot->accepted = true;
         $participant->pivot->update();
-        return response()->json(['messsage' => 'invitation accepted']);
+        return response()->json(['message' => 'invitation accepted']);
     }
 
     /**
@@ -149,11 +149,11 @@ class TodolistController extends Controller
     {
         $participant = $todolist->Participants()->where('user_id', Auth::id())->first();
         if ($participant->pivot->accepted !== null) {
-            return response()->json(['messsage' => 'an error are occured']);
+            return response()->json(['message' => 'an error are occured']);
         }
         $participant->pivot->accepted = false;
         $participant->pivot->update();
-        return response()->json(['messsage' => 'invitation denied']);
+        return response()->json(['message' => 'invitation denied']);
     }
 
     /**

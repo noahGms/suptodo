@@ -55,6 +55,7 @@ export default defineComponent({
     methods: {
         login() {
             this.$store.dispatch("login", this.credentials).then((response) => {
+                window.notification(response.data.message, 'success');
                 this.$router.push({ name: "home" });
             });
         },

@@ -13,7 +13,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         $user = User::create($request->validated());
-        return response()->json('user created');
+        return response()->json(['message' => 'user created']);
     }
 
     public function login(LoginRequest $request)
@@ -32,7 +32,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::user()->tokens()->delete();
-        return response()->json(['status' => 200]);
+        return response()->json(['status' => 200, 'message' => 'logout']);
     }
 
     public function whoami()

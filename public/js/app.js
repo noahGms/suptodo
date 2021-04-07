@@ -16470,7 +16470,9 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this = this;
 
-      this.$store.dispatch("logout")["finally"](function () {
+      this.$store.dispatch("logout").then(function (response) {
+        window.notification(response.data.message, 'success');
+      })["finally"](function () {
         _this.$router.push({
           name: "login"
         });

@@ -92,7 +92,8 @@ export default defineComponent({
         },
         deleteFriend(friend) {
             if (confirm('Are you sure ?')) {
-                this.$store.dispatch('deleteOneFriend', friend).then(_ => {
+                this.$store.dispatch('deleteOneFriend', friend).then(response => {
+                    window.notification(response.data.message, 'success');
                     this.getAllFriends();
                 });
             }
